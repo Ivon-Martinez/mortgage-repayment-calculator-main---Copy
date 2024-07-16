@@ -25,7 +25,8 @@
         <form id="mortgageForm" onsubmit="calculateRepayments(event)">
           <div class="mAmount">
             <h3>Mortgage Amount</h3>
-            <input type="text" id="mortgageAmount" required>
+            <input type="text" id="mortgageAmount" class="currency-input" oninput="formatCurrency(this)" required>
+            <p id="formattedAmount"></p>
           </div>
           <div class="yearsPercentage">
             <div class="term">
