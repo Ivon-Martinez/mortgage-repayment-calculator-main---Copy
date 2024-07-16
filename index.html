@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="style.css">
   <title>Frontend Mentor | Mortgage repayment calculator</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
@@ -15,7 +14,8 @@
   </style>
 </head>
 <body>
-<div class="conatiner">
+  <script src="script.js"></script>
+  <div class="conatiner">
     <div class="main">
       <div class="left">
         <div class="mCalculator">
@@ -25,75 +25,25 @@
         <form id="mortgageForm" onsubmit="calculateRepayments(event)">
           <div class="mAmount">
             <h3>Mortgage Amount</h3>
-            <input type="text" id="mortgageAmount">
+            <input type="text" id="mortgageAmount" required>
           </div>
           <div class="yearsPercentage">
             <div class="term">
-              <h3>Mortgage Amount</h3>
-              <input type="text" id="yearsMortgage">
+              <h3>Mortgage Term</h3>
+              <input type="text" id="yearsMortgage"required>
             </div>
             <div class="interest">
               <h3>Interest Rate (%)</h3>
-              <input type="text" id="mortgageInterest">
-            </div>
-          </div>
-          <div class="m_type">
-            <label for="">Mortgage Type</label><br>
-            <input type="radio" id="mortgageRepayment">
-            <label for="mortgageRepayment">Repayment</label><br>
-            <input type="radio" id="interestOnly">
-            <label for="interestOnly">Interest Only</label><br>          
-          </div>
-          <div class="calculate_button">
-            <button type="submit">Calculate Repayments</button>
-          </div>
-        </form>
-      </div>
-
-      <div class="right">
-        <div class="result">
-          <h1>Your results</h1>
-          <h3>Your results are shown below based on the information you provided. 
-            To adjust the results, edit the form and click “calculate repayments” again.</h3>
-        </div>
-        <div class="result">
-          <h3>Your monthly repayments</h3>
-          <h3>Total you'll repay over the term</h3>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- <div class="container">
-    <div class="main">
-      <div class="left">
-        <div class="m_calculator">
-          <h1>Mortgage Calculator</h1>
-          <button type="button" onclick="clearForm()">Clear All</button>
-        </div>
-        <form id="mortgageForm" onsubmit="calculateRepayments(event)">
-          <div class="m_amount">
-            <h3>Mortgage Amount</h3>
-            <input type="number" id="loanAmount" name="loanAmount" required>
-          </div>
-          <div class="years_percentage">
-            <div class="term">
-              <h3>Mortgage Term (years)</h3>
-              <input type="number" id="loanTerm" name="loanTerm" required>
-            </div>
-            <div class="interest">
-              <h3>Interest Rate (%)</h3>
-              <input type="number" id="interestRate" name="interestRate" step="0.01" required>
+              <input type="text" id="mortgageInterest" required>
             </div>
           </div>
           <div class="m_type">
             <h3>Mortgage Type</h3>
             <label>
-              <input type="radio" name="mortgageType" value="repayment" checked> Repayment
+              <input type="radio" name="mortgageType" value="mortgageRepayment">Repayment
             </label>
             <label>
-              <input type="radio" name="mortgageType" value="interestOnly"> Interest Only
+              <input type="radio" name="mortgageType" value="interestOnly">Interest Only
             </label>
           </div>
           <div class="calculate_button">
@@ -101,6 +51,7 @@
           </div>
         </form>
       </div>
+
       <div class="right">
         <div class="result">
           <h1>Your results</h1>
@@ -108,12 +59,13 @@
             To adjust the results, edit the form and click “calculate repayments” again.</h3>
         </div>
         <div class="result">
-          <h3 id="monthlyRepayment">Your monthly repayments: </h3>
-          <h3 id="totalRepayment">Total you'll repay over the term: </h3>
+          <h3 id="monthlyRepayment">Your monthly repayments:</h3> 
+          <h3 id="totalRepayment">Total you'll repay over the term:</h3> 
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
+
 
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
