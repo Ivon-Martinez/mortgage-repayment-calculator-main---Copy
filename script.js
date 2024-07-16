@@ -14,15 +14,23 @@ function calculateRepayments(event) {
     let monthlyRepayment, totalRepayment;
 
     if (mortgageType === 'mortgageRepayment') {
-        
+        const x = Math.pow(1+mortgageInterest, yearsMortgage);
+        monthlyRepayment = (mortgageAmount * mortgageInterest * x) / (x - 1);
+    } 
+    else {
+        monthlyRepayment = (mortgageAmount * mortgageInterest);
     }
 
+    totalRepayment = monthlyRepayment * yearsMortgage;
 
-
+    document.getElementById('monthlyRepayment').textContent = `Your monthly repayments: $${monthlyRepayment.toFixed(2)}`;
+    document.getElementById('totalRepayment').textContent = `Total you'll repay over the term: $${totalRepayment.toFixed(2)}`;
 }
 
-
-
-
-clearForm()
+function clearForm(){
+    document.getElementById('mortgageForm').reset();
+    document.getElementById('monthlyRepayment').textContent = 'Your monthly repayments: ';
+    document.getElementById('totalRepayment').textContent = "Total you'll repay over the term: ";
+  
+}
 
