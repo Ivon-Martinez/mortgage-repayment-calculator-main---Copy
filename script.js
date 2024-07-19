@@ -1,31 +1,6 @@
-document.getElementById('mortgageForm').addEventListener('submit', calculateRepayments);
+//document.getElementById('mortgageForm').addEventListener('submit', calculateRepayments);
 const form = document.getElementById('mortgageForm');
-
-
-let inputAmount = document.querySelector("#mortgageAmount");
-inputAmount.addEventListener("keyup",(event)=>{
-    var tempNumber = inputAmount.value.replace(/,/g, "");
-    var comaSeparator = tempNumber.split(/(?=(?:\d{3})+$)/).join(",");
-
-    if (!isNaN(tempNumber) && tempNumber.length > 0) {
-        // Format the number with commas
-        var comaSeparator = parseFloat(tempNumber).toLocaleString();
-        inputAmount.value = comaSeparator;
-    } else if (tempNumber.length === 0) {
-        inputAmount.value = "";
-    } else {
-        // If input is not a valid number, reset to the previous value
-        var previousValue = event.target.getAttribute("data-previous-value") || "";
-        inputAmount.value = previousValue;
-    }
-
-
-
-
-
-    inputAmount.value = comaSeparator;
-})
-
+form.addEventListener('submit', calculateRepayments);
 
 
 
@@ -37,6 +12,12 @@ function calculateRepayments(event) {
     const mortgageInterest = parseFloat(document.getElementById('mortgageInterest').value);
 
     const mortgageType = document.querySelector('input[name = "mortgageType"]:checked').value;
+
+    if (isNaN(Number(mortgageAmount)) ){
+        document.getElementById('result').textContent = "The entered value is not a number.";
+        return;
+
+    }
 
     let monthlyRepayment, totalRepayment;
 
@@ -55,8 +36,8 @@ function calculateRepayments(event) {
     }
 
 
-    document.getElementById('monthlyRepayment').textContent = `Your monthly repayments: £${monthlyRepayment.toFixed(2)}`;
-    document.getElementById('totalRepayment').textContent = `Total you'll repay over the term: £${totalRepayment.toFixed(2)}`;
+    document.getElementById('monthlyRepayment').textContent = `Your monthly repayments: £${parseFloat(monthlyRepayment.toFixed(2)).toLocaleString()}`;
+    document.getElementById('totalRepayment').textContent = `Total you'll repay over the term: £${parseFloat(totalRepayment.toFixed(2)).toLocaleString()}`;
 }
 
 function clearForm(){
