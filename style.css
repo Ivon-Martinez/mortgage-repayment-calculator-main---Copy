@@ -2,3 +2,15 @@ body {
 background-color: rgb(216, 235, 243);
 }
 
+.amount_error {
+    font-size: .7rem;
+    text-align: start;
+    font-family: inherit;
+    color: var(--RED);
+    font-weight: 700;
+    margin-top: 7px;
+}
+
+.hide {
+    display: none;
+}

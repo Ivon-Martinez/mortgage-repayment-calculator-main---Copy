@@ -13,10 +13,25 @@ function calculateRepayments(event) {
 
     const mortgageType = document.querySelector('input[name = "mortgageType"]:checked').value;
 
-    if (isNaN(Number(mortgageAmount)) ){
-        document.getElementById('result').textContent = "The entered value is not a number.";
-        return;
 
+    const mortgageAmountError = document.querySelector(".amount_error");
+
+
+    if (isNaN(mortgageAmount)){
+        // document.getElementById('formattedAmount').textContent = "Please enter a valid number.";
+        mortgageAmountError.classList.remove("hide");
+
+        return;
+    }
+
+    if (isNaN(yearsMortgage)){
+        document.getElementById('years').textContent = "Please enter a valid number.";
+        return;
+    }
+
+    if (isNaN(mortgageInterest)){
+        document.getElementById('percentage').textContent = "Please enter a valid number.";
+        return;
     }
 
     let monthlyRepayment, totalRepayment;
