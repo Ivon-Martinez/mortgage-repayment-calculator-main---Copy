@@ -2,6 +2,32 @@ document.getElementById('mortgageForm').addEventListener('submit', calculateRepa
 const form = document.getElementById('mortgageForm');
 
 
+let inputAmount = document.querySelector("#mortgageAmount");
+inputAmount.addEventListener("keyup",(event)=>{
+    var tempNumber = inputAmount.value.replace(/,/g, "");
+    var comaSeparator = tempNumber.split(/(?=(?:\d{3})+$)/).join(",");
+
+    if (!isNaN(tempNumber) && tempNumber.length > 0) {
+        // Format the number with commas
+        var comaSeparator = parseFloat(tempNumber).toLocaleString();
+        inputAmount.value = comaSeparator;
+    } else if (tempNumber.length === 0) {
+        inputAmount.value = "";
+    } else {
+        // If input is not a valid number, reset to the previous value
+        var previousValue = event.target.getAttribute("data-previous-value") || "";
+        inputAmount.value = previousValue;
+    }
+
+
+
+
+
+    inputAmount.value = comaSeparator;
+})
+
+
+
 
 function calculateRepayments(event) {
     event.preventDefault();
