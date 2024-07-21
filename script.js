@@ -4,6 +4,14 @@ form.addEventListener('submit', calculateRepayments);
 
 
 
+    let inputNumber = document.querySelector("#mortgageAmount");
+    inputNumber.addEventListener("keyup", (event)=>{
+    var tempNumber = inputNumber.value.replace(/,/gi, "");
+    var commaSeparatedNumber = tempNumber.split(/(?=(?:\d{3})+$)/).join(",");
+    inputNumber.value = commaSeparatedNumber;
+    })
+
+
 function calculateRepayments(event) {
     event.preventDefault();
 
