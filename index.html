@@ -25,33 +25,31 @@
             <p>Mortgage Amount</p>
               <div class="mAmount_input">
                 <p class="symbol">£</p>
-                <input type="text" id="mortgageAmount" class="currency-input" oninput="formatCurrency(this)" required>
+                <input type="text" id="mortgageAmount" class="currency-input" oninput="formatCurrency(this)">
               </div>
-          <!--  <p id="formattedAmount"></p>
-          -->  <p class="amount_error hide">This field is required</p>
-
-          <!--  <p class="amount_error hide">This field is required</p>-->
+            <p class="amount_error hide">This field is required</p>
           </div>
 
           <div class="yearsPercentage">
-
             <div class="term">
               <p>Mortgage Term</p>
-              <input type="text" id="yearsMortgage"required>
-              <p id="yearsInput">years</p>
-
-              <p id="years"></p>
-          <!--    <p class="years_error hide">This field is required</p>
-           --> </div>
+              <div class="termInput">
+                <input type="text" id="yearsMortgage">
+                <p id="yearsInput">years</p>
+              </div>
+             <!--  <p id="years"></p>  -->
+              <p class="years_error hide">This field is required</p>
+            </div>
 
             <div class="interest">
               <p>Interest Rate</p>
-              <input type="text" id="mortgageInterest" required>
-              <p id="symbolPercentage">%</p>
-
-              <p id="percentage"></p>
-          <!--    <p class="percentage_error hide">This fiel is required</p>
-          -->  </div>
+              <div>
+                <input type="text" id="mortgageInterest">
+                <p id="symbolPercentage">%</p>
+              </div>
+              <p id="percentage"></p>  
+              <p class="percentage_error hide">This fiel is required</p>
+            </div>
           </div>
 
           <div class="m_type">

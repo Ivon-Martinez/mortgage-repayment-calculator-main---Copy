@@ -4,12 +4,6 @@ form.addEventListener('submit', calculateRepayments);
 
 
 
-    let inputNumber = document.querySelector("#mortgageAmount");
-    inputNumber.addEventListener("keyup", (event)=>{
-    var tempNumber = inputNumber.value.replace(/,/gi, "");
-    var commaSeparatedNumber = tempNumber.split(/(?=(?:\d{3})+$)/).join(",");
-    inputNumber.value = commaSeparatedNumber;
-    })
 
 
 function calculateRepayments(event) {
@@ -21,26 +15,43 @@ function calculateRepayments(event) {
 
     const mortgageType = document.querySelector('input[name = "mortgageType"]:checked').value;
 
-
     const mortgageAmountError = document.querySelector(".amount_error");
+    const yearsError = document.querySelector(".years_error");
+    const interestError = document.querySelector(".percentage_error");
+    const typeError = document.querySelector(".type_error");
 
 
-    if (isNaN(mortgageAmount)){
+    if (isNaN(mortgageAmount) || mortgageAmount <= 0){
         // document.getElementById('formattedAmount').textContent = "Please enter a valid number.";
-        mortgageAmountError.classList.remove("hide");
+       // mortgageAmountError.classList.remove("hide");
+        //return; 
 
-        return;
+        document.getElementById('')
+
     }
 
+    // if (mortgageAmount==='number'){
+    //     mortgageAmountError.classList.add("hide");
+    //     return;
+    // }
+
     if (isNaN(yearsMortgage)){
-        document.getElementById('years').textContent = "Please enter a valid number.";
+        //document.getElementById('years').textContent = "Please enter a valid number.";
+        yearsError.classList.remove("hide");
         return;
     }
 
     if (isNaN(mortgageInterest)){
         document.getElementById('percentage').textContent = "Please enter a valid number.";
+        //interestError.classList.remove("hide");
         return;
     }
+
+    if ((mortgageType !== "mortgageRepayment" ) && (mortgageType !== "interestOnly" )){
+        typeError.classList.remove("hide");
+        return;
+    }
+
 
     let monthlyRepayment, totalRepayment;
 
