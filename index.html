@@ -21,13 +21,13 @@
         </div>
         <form id="mortgageForm" onsubmit="calculateRepayments(event)">
                   
-          <div class="mAmount">
+          <div class="form_item">
             <p>Mortgage Amount</p>
-              <div class="mAmount_input">
+              <div class="form_flex" id="mortgage-amount-main">
                 <p class="symbol">£</p>
-                <input type="text" id="mortgageAmount" class="currency-input" oninput="formatCurrency(this)">
+                <input type="text" id="mortgageAmount" name="mortgageAmount" class="currency-input" oninput="formatCurrency(this)">
               </div>
-            <p class="amount_error hide">This field is required</p>
+            <p class="form_alert" id="amount_alert">This field is required</p>
           </div>
 
           <div class="yearsPercentage">
@@ -38,7 +38,7 @@
                 <p id="yearsInput">years</p>
               </div>
              <!--  <p id="years"></p>  -->
-              <p class="years_error hide">This field is required</p>
+              <p class="form_alert" id="years_alert">This field is required</p>
             </div>
 
             <div class="interest">
@@ -48,19 +48,19 @@
                 <p id="symbolPercentage">%</p>
               </div>
               <p id="percentage"></p>  
-              <p class="percentage_error hide">This fiel is required</p>
+              <p class="form_alert" id="interest_alert">This fiel is required</p>
             </div>
           </div>
 
           <div class="m_type">
             <p>Mortgage Type</p>
-            <label>
+            <div class ="radio-inputs">
               <input type="radio" name="mortgageType" value="mortgageRepayment">Repayment
-            </label>
-            <label>
+            </div>
+            <div>
               <input type="radio" name="mortgageType" value="interestOnly">Interest Only
-            </label>
-            <p class="type_error hide">This field is required</p>
+            </div>
+            <p class="form_alert" id="type_alert">This field is required</p>
           </div>
 
             <button class="calculate_button" type="submit">
