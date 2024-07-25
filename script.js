@@ -137,7 +137,7 @@ function clearForm(){
     document.getElementById('mortgageForm').reset();
     document.getElementById('monthlyRepayment').textContent = 'Your monthly repayments: ';
     document.getElementById('totalRepayment').textContent = "Total you'll repay over the term: ";
-    document.querySelectorAll('.form_alert').forEach(alert => {alert.style.display = 'none'
+    document.querySelectorAll('.form-alert').forEach(alert => {alert.style.display = 'none'
     })
 
     defaultText.classList.remove('hide')
@@ -151,7 +151,7 @@ function clearForm(){
         el.classList.remove('error')
     })
 }
-document.querySelectorAll('.form_alert').forEach(alert =>{
+document.querySelectorAll('.form-alert').forEach(alert =>{
 alert.style.display = 'none'
 
 })

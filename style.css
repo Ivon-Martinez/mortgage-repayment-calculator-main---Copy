@@ -95,7 +95,7 @@ button {
     cursor:pointer;
 }
 
-.form_item {
+.form-item {
     margin-bottom: 2rem;
 }
 
@@ -139,7 +139,7 @@ button {
     gap: 1.75rem;
 }
 
-.form-col .form_item {
+.form-col .form-item {
     margin: 0;
 }
 
@@ -151,7 +151,7 @@ body {
     place-content: center;
 }
 
-.form_alert {
+.form-alert {
     color: red;
     display: none;
 }

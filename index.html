@@ -15,43 +15,110 @@
 </head>
 <body>
   <script src="script.js"></script>
-  <div class="conatiner1">
-    <div class="main">
-      <div class="left">
-        <div class="mCalculator">
-          <h1>Mortgage Calculator</h1>
-          <button type="button" onclick="clearForm()">Clear All</button>
-        </div>
-        <form id="mortgageForm" onsubmit="calculateRepayments(event)">
-                  
-          <div class="form_item">
-            <p>Mortgage Amount</p>
-              <div class="form_flex" id="mortgage-amount-main">
-                <p class="symbol">£</p>
-                <input type="text" id="mortgageAmount" name="mortgageAmount" class="currency-input" oninput="formatCurrency(this)">
+  <div class="mortgage-calculator">
+    <div class="left">
+      <div class="header">
+          <h2>Mortgage Calculator</h2>
+          <button type="button" id="clear-btn" onclick="clearForm()">Clear All</button>
+      </div> 
+       
+      <form id="mortgage-form" onsubmit="calculateRepayments(event)">
+          <div class="form-item">
+            <label class="light-text" for="mortgage-amount">Mortgage Amount</label>
+              <div class="form-flex" id="mortgage-amount-main">
+                <p class="form-symbol">£</p>
+                <input type="text" id="mortgage-amount" name="mortgage-amount" class="currency-input" oninput="formatCurrency(this)">      
               </div>
-            <p class="form_alert" id="amount_alert">This field is required</p>
+
+            <p class="form-alert" id="amount-alert">This field is required</p>
           </div>
 
-          <div class="yearsPercentage">
-            <div class="term">
-              <p>Mortgage Term</p>
-              <div class="termInput">
-                <input type="text" id="yearsMortgage">
-                <p id="yearsInput">years</p>
+          <div class="form-item">
+            <div class="form-col">
+              <div class="form-item">
+                <label class="light-text" for="mortgage-term">Mortgage Term</label>
+              <div class="form-flex" id="mortgage-amount-main">
+                <input type="text" id="yearsMortgage" name="mortgage-term">
+                <p class="form-symbol">years</p>
               </div>
-             <!--  <p id="years"></p>  -->
-              <p class="form_alert" id="years_alert">This field is required</p>
+              <p class="form-alert" id="term_alert">This field is required</p>
             </div>
 
-            <div class="interest">
+            <div class="form-alert">
+              <label for="light-text" form="interest-rate">Interest Rate</label>
+              <div class="form-flex" id="interest-rate-main">
+                <input id="interest-rate" type="number" name="interest-rate" step="0.01" requerid>
+                <p class="form-symbol">%</p>
+              </div>
+              <p class="form-alert" id="rate-alert">This field is required</p>
+            </div>
+          </div>
+        </div>
+
+      <div class="form-item">
+        <label class="light-text">Mortgage Type</label>
+
+        <div class="radio-inputs">
+          <input id="repayment" class="mortgage-type" type="radio" name="mortgage-type" value="repayment" required>
+          <label for="interest-only">interest-only</label>
+        </div>
+
+        <p class="form-alert" id="type_alert">This field is required</p>
+      </div>
+
+      <div class="form-item">
+        <button id="calculate-btn" class="calculate-btn" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path fill="#133041" d="M18.75 ..."/>
+          </svg>
+          calculate Repayments
+        </button>
+      </div>
+</form>
+</div>
+
+<div class="right">
+  <div id="default-text" class="default-text"> 
+    <img src="./assets/images/illustration-empty.svg" alt="Office Articles">
+
+    <h2>Results shown here</h2>
+    <p class="light-text">Complete the form and click "calculate repayments" to see what your monthly repayments would be.</p>
+  </div>
+
+  <div id="calculations-container" class="calculations-container">
+    <h2>Your results</h2>
+
+    <p class="light-text">Your results are shown below based on the information you provided. 
+      To adjust the results, edit the form and click “calculate repayments” again.</p>
+
+    <div class="calculations">
+      <div class="monthly">
+        <p class="light-text">Your monthly repayments</p>
+        <span id="result" class="monthly-result"></span>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="total-term">
+        <p class="light-text">Total you'll repay over the ter,</p>
+        <span id="term-result" class="term-result"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+            <!-- <div class="interest">
               <p>Interest Rate</p>
               <div>
                 <input type="text" id="mortgageInterest">
                 <p id="symbolPercentage">%</p>
               </div>
               <p id="percentage"></p>  
-              <p class="form_alert" id="interest_alert">This fiel is required</p>
+              <p class="form-alert" id="interest_alert">This fiel is required</p>
             </div>
           </div>
 
@@ -63,7 +130,7 @@
             <div>
               <input type="radio" name="mortgageType" value="interestOnly">Interest Only
             </div>
-            <p class="form_alert" id="type_alert">This field is required</p>
+            <p class="form-alert" id="type_alert">This field is required</p>
           </div>
 
             <button class="calculate_button" type="submit">
@@ -72,9 +139,9 @@
             </button>
         
         </form>
-      </div>
+      </div> -->
 
-      <div class="right">
+      <!-- <div class="right">
         <div class="before_results">
           <img src="./assets/images/illustration-empty.svg" alt="Office Articles">
           <h1>Results shown here</h1>
@@ -93,7 +160,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 
   <div class="attribution">
