@@ -1,33 +1,52 @@
-//document.getElementById('mortgageForm').addEventListener('submit', calculateRepayments);
-const form = document.getElementById('mortgageForm');
-form.addEventListener('submit', calculateRepayments);
+// const form = document.getElementById('mortgageForm');
+// form.addEventListener('submit', calculateRepayments);
+
+const defaultText = document.getElementById('default-text')
+const calculationsContainer = document.getElementById('calculations-container')
+
+document.querySelectorAll('.mortgage-type').forEach(input => {
+    input.addEventListener('change', () => {
+        document.querySelectorAll('.radio-inputs').forEach(div => {
+            div.classList.remove('selected')
+        })
+
+        if(this.checked){
+            this.SVGComponentTransferFunctionElement.classList.add('selected')
+        }
+    })
+})
 
 
 
+// function calculateRepayments(event) {
+//     event.preventDefault();
 
+//     const mortgageAmount = parseFloat(document.getElementById('mortgageAmount').value);
+//     const yearsMortgage = parseFloat(document.getElementById('yearsMortgage').value);
+//     const mortgageInterest = parseFloat(document.getElementById('mortgageInterest').value);
 
-function calculateRepayments(event) {
-    event.preventDefault();
+//     const mortgageType = document.querySelector('input[name = "mortgageType"]:checked').value;
 
-    const mortgageAmount = parseFloat(document.getElementById('mortgageAmount').value);
-    const yearsMortgage = parseFloat(document.getElementById('yearsMortgage').value);
-    const mortgageInterest = parseFloat(document.getElementById('mortgageInterest').value);
+//     const mortgageAmountError = document.querySelector(".amount_error");
+//     const yearsError = document.querySelector(".years_error");
+//     const interestError = document.querySelector(".percentage_error");
+//     const typeError = document.querySelector(".type_error");
 
-    const mortgageType = document.querySelector('input[name = "mortgageType"]:checked').value;
-
-    const mortgageAmountError = document.querySelector(".amount_error");
-    const yearsError = document.querySelector(".years_error");
-    const interestError = document.querySelector(".percentage_error");
-    const typeError = document.querySelector(".type_error");
+document.getElementById('calculate-btn').addEventListener('click', () => {
+    const amount = parseFloat(document.getElementById('mortgage-amount').value)
+    const term = parseFloat(document.getElementById('mortgage-amount').value)
+    const rate = parseFloat(document.getElementById('mortgage-amount').value) / 100
+    const mortgageType = document.querySelector('input[name="mortgage-type"]:checked')
 
 
     let isValid = true;
 
-    document.querySelectorAll('.form_flex').forEach(el => {el.classList.remove('error');})
+    document.querySelectorAll('.form_flex').forEach(el => {el.classList.remove('error')
+    })
 
     if (isNaN(amount) || amount <= 0) {
         // Show the alert element with ID 'amount-alert'
-        document.getElementById('amount_alert').style.display = 'block';
+        document.getElementById('amount-alert').style.display = 'block';
         
         // Add 'error' class to the element with ID 'mortgage-amount-main'
         document.getElementById('mortgage-amount-main').classList.add('error');
@@ -36,36 +55,36 @@ function calculateRepayments(event) {
         isValid = false;
     } else {
         // Hide the alert element with ID 'amount-alert'
-        document.getElementById('amount_alert').style.display = 'none';
+        document.getElementById('amount-alert').style.display = 'none';
     }
 
     if (isNaN(term) || term <= 0) {
-        document.getElementById('term_alert').style.display = 'block';
+        document.getElementById('term-alert').style.display = 'block';
         document.getElementById('mortgage-term-main').classList.add('error');
         isValid = false;
     } else {
-        document.getElementById('term_alert').style.display = 'none';
+        document.getElementById('term-alert').style.display = 'none';
     }
 
     if (isNaN(rate) || rate <= 0) {
-        document.getElementById('rate_alert').style.display = 'block';
+        document.getElementById('rate-alert').style.display = 'block';
         document.getElementById('interest-rate-main').classList.add('error');
         isValid = false;
     } else {
-        document.getElementById('rate_alert').style.display = 'none';
+        document.getElementById('rate-alert').style.display = 'none';
     }
 
 
     if (!mortgageType) {
-        document.getElementById('type_alert').style.display = 'block';
-        document.querySelectorAll('.radio_inputs').forEach(el => {
+        document.getElementById('type-alert').style.display = 'block';
+        document.querySelectorAll('.radio-inputs').forEach(el => {
             el.classList.add('error')
         })
         isValid= false;
     }
     else {
-        document.getElementById('type_alert').style.display = 'none';
-        document.querySelectorAll('.radio_inputs').forEach(el => {
+        document.getElementById('type-alert').style.display = 'none';
+        document.querySelectorAll('.radio-inputs').forEach(el => {
             el.classList.remove('error')
         })
     }
@@ -100,28 +119,62 @@ function calculateRepayments(event) {
 
         let monthlyRepayment, totalRepayment;
 
-        default_text.classList.add('hide')
-        calculations_container.classList.add('show')
+        defaultText.classList.add('hide')
+        calculationsContainer.classList.add('show')
 
-
-        if (mortgageType === 'mortgageRepayment') {
-            const n = yearsMortgage * 12;
-            const r = (mortgageInterest/100)/12;
-            const x = Math.pow(1+r, n);
-            monthlyRepayment = mortgageAmount * ((r * x) / (x - 1));
-            totalRepayment = monthlyRepayment * n;
+        if (mortgageType.value === 'repayment') {
+            const monthlyRate = rate / 12;
+            const n = term * 12;
+            monthlyPayment = (amount * monthlyRate) / (1- Math.pow((1 + monthlyRate), -n))
+            totalRepayment = monthlyPayment * n;
         } 
-        else {
-            const n = yearsMortgage * 12;
-            const r = (mortgageInterest/100)/12;
-            monthlyRepayment = (mortgageAmount * r);
-            totalRepayment = monthlyRepayment * n;
+        else if (mortgageType.value === 'interest-only')
+        {
+            monthlyPayment = (amount * rate) / 12;
+            totalRepayment = monthlyPayment * term * 12;
+
+            // const n = yearsMortgage * 12;
+            // const r = (mortgageInterest/100)/12;
+            // monthlyRepayment = (mortgageAmount * r);
+            // totalRepayment = monthlyRepayment * n;
         }
 
 
-        document.getElementById('monthlyRepayment').textContent = `Your monthly repayments: £${parseFloat(monthlyRepayment.toFixed(2)).toLocaleString()}`;
-        document.getElementById('totalRepayment').textContent = `Total you'll repay over the term: £${parseFloat(totalRepayment.toFixed(2)).toLocaleString()}`;
-    }
+            document.getElementById('result').innerText = $${monthlyPayment.toFixed(2)}
+            document.getElementById('term-result').innerText = $${monthlyPayment.toFixed(2)}
+
+        else{
+            document.getElementById('result').innerText=''
+            document.getElementsByName('term-result').innerText= ''
+
+            defaultText.classList.remove('hide')
+            calculationsContainer.classList.remove('show')
+            
+        }    
+        // document.getElementById('monthlyRepayment').textContent = `Your monthly repayments: £${parseFloat(monthlyRepayment.toFixed(2)).toLocaleString()}`;
+        // document.getElementById('totalRepayment').textContent = `Total you'll repay over the term: £${parseFloat(totalRepayment.toFixed(2)).toLocaleString()}`;
+    
+    })
+
+
+    //     if (mortgageType.value === 'repayment') {
+    //         const n = yearsMortgage * 12;
+    //         const r = (mortgageInterest/100)/12;
+    //         const x = Math.pow(1+r, n);
+    //         monthlyRepayment = mortgageAmount * ((r * x) / (x - 1));
+    //         totalRepayment = monthlyRepayment * n;
+    //     } 
+    //     else {
+    //         const n = yearsMortgage * 12;
+    //         const r = (mortgageInterest/100)/12;
+    //         monthlyRepayment = (mortgageAmount * r);
+    //         totalRepayment = monthlyRepayment * n;
+    //     }
+
+
+    //     document.getElementById('monthlyRepayment').textContent = `Your monthly repayments: £${parseFloat(monthlyRepayment.toFixed(2)).toLocaleString()}`;
+    //     document.getElementById('totalRepayment').textContent = `Total you'll repay over the term: £${parseFloat(totalRepayment.toFixed(2)).toLocaleString()}`;
+    // }
 
     else {
         document.getElementById('result').innerText = ''
