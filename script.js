@@ -5,7 +5,7 @@ const defaultText = document.getElementById('default-text')
 const calculationsContainer = document.getElementById('calculations-container')
 
 document.querySelectorAll('.mortgage-type').forEach(input => {
-    input.addEventListener('change', () => {
+    input.addEventListener('change', function() {
         document.querySelectorAll('.radio-inputs').forEach(div => {
             div.classList.remove('selected')
         })
@@ -35,7 +35,7 @@ document.querySelectorAll('.mortgage-type').forEach(input => {
 document.getElementById('calculate-btn').addEventListener('click', () => {
     const amount = parseFloat(document.getElementById('mortgage-amount').value)
     const term = parseFloat(document.getElementById('mortgage-amount').value)
-    const rate = parseFloat(document.getElementById('mortgage-amount').value) / 100
+    const rate = parseFloat(document.getElementById('interest-rate').value) / 100
     const mortgageType = document.querySelector('input[name="mortgage-type"]:checked')
 
 
@@ -174,40 +174,64 @@ document.getElementById('calculate-btn').addEventListener('click', () => {
 
     //     document.getElementById('monthlyRepayment').textContent = `Your monthly repayments: £${parseFloat(monthlyRepayment.toFixed(2)).toLocaleString()}`;
     //     document.getElementById('totalRepayment').textContent = `Total you'll repay over the term: £${parseFloat(totalRepayment.toFixed(2)).toLocaleString()}`;
-    // }
+    //  }
 
     else {
         document.getElementById('result').innerText = ''
         document.getElementById('term_result').innerText = ''
 
 
-        default_text.classList.remove('hide')
-        calculations_container.classList.remove('show')
+        defaultText.classList.remove('hide')
+        calculationsContainer.classList.remove('show')
     }
-}
+}}
 
-function clearForm(){
-    document.getElementById('mortgageForm').reset();
-    document.getElementById('monthlyRepayment').textContent = 'Your monthly repayments: ';
-    document.getElementById('totalRepayment').textContent = "Total you'll repay over the term: ";
-    document.querySelectorAll('.form-alert').forEach(alert => {alert.style.display = 'none'
-    })
+document,getElementById('clear-btn').addEventListener('click', () => {
+    document.getElementById('mortgage-form').reset()
+    document.getElementById('result').innerText = ''
+    document.getElementById('term-esult').innerText = ''
+    document.querySelectorAll('.form-alert').forEach(alert => {
+        alert.style.display = 'none'
+    }) 
 
     defaultText.classList.remove('hide')
-    calculations_container.classList.remove('show')
+    calculationsContainer.classList.remove('show')
 
-    document.querySelectorAll('.radio_inputs').forEach(div =>{
-    div.classList.remove('selected')
+    document.querySelectorAll('.radio-inputs').forEach(div => {div.classList.remove('selected')
+
     })
 
-    document.querySelectorAll('.form_flex').forEach(el =>{
-        el.classList.remove('error')
-    })
-}
-document.querySelectorAll('.form-alert').forEach(alert =>{
-alert.style.display = 'none'
+    document.querySelectorAll('.form-flex').forEach(el => { el.classList.remove('error')})
+})
 
 })
+
+document.querySelectorAll('.form-alert').forEach(alert => {
+    alert.style.display = 'none'
+})
+
+// function clearForm(){
+//     document.getElementById('mortgageForm').reset();
+//     document.getElementById('monthlyRepayment').textContent = 'Your monthly repayments: ';
+//     document.getElementById('totalRepayment').textContent = "Total you'll repay over the term: ";
+//     document.querySelectorAll('.form-alert').forEach(alert => {alert.style.display = 'none'
+//     })
+
+//     defaultText.classList.remove('hide')
+//     calculations_container.classList.remove('show')
+
+//     document.querySelectorAll('.radio_inputs').forEach(div =>{
+//     div.classList.remove('selected')
+//     })
+
+//     document.querySelectorAll('.form_flex').forEach(el =>{
+//         el.classList.remove('error')
+//     })
+// }
+// document.querySelectorAll('.form-alert').forEach(alert =>{
+// alert.style.display = 'none'
+
+// })
 
 
 
