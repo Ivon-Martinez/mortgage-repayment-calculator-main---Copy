@@ -6,8 +6,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
   <link rel="stylesheet" href="style.css">
+
+
+  <!-- <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png"> -->
   <title>Frontend Mentor | Mortgage repayment calculator</title>
   
 
@@ -15,19 +18,24 @@
 </head>
 <body>
   <script src="script.js"></script>
+
   <div class="mortgage-calculator">
     <div class="left">
       <div class="header">
           <h2>Mortgage Calculator</h2>
-          <button type="button" id="clear-btn" onclick="clearForm()">Clear All</button>
-      </div> 
+          <!-- <button type="button" id="clear-btn" onclick="clearForm()">Clear All</button> -->
+          <button id="clear-btn">Clear All</button>
+        </div> 
        
-      <form id="mortgage-form" onsubmit="calculateRepayments(event)">
+      <!-- <form id="mortgage-form" onsubmit="calculateRepayments(event)"> -->
+      <form id="mortgage-form">
           <div class="form-item">
-            <label class="light-text" for="mortgage-amount">Mortgage Amount</label>
+            <label class="light-text" 
+            for="mortgage-amount">Mortgage Amount</label>
               <div class="form-flex" id="mortgage-amount-main">
                 <p class="form-symbol">£</p>
-                <input type="text" id="mortgage-amount" name="mortgage-amount" class="currency-input" oninput="formatCurrency(this)">      
+                <input type="text" id="mortgage-amount" name="mortgage-amount" required">      
+                <!-- <input type="text" id="mortgage-amount" name="mortgage-amount" class="currency-input" oninput="formatCurrency(this)">       -->
               </div>
 
             <p class="form-alert" id="amount-alert">This field is required</p>
@@ -37,15 +45,15 @@
             <div class="form-col">
               <div class="form-item">
                 <label class="light-text" for="mortgage-term">Mortgage Term</label>
-              <div class="form-flex" id="mortgage-amount-main">
-                <input type="text" id="yearsMortgage" name="mortgage-term">
+              <div class="form-flex" id="mortgage-term-main">
+                <input type="text" id="mortgage-term" name="mortgage-term" required>
                 <p class="form-symbol">years</p>
               </div>
-              <p class="form-alert" id="term_alert">This field is required</p>
+              <p class="form-alert" id="term-alert">This field is required</p>
             </div>
 
             <div class="form-item">
-              <label for="light-text" form="interest-rate">Interest Rate</label>
+              <label class="light-text" for="interest-rate">Interest Rate</label>
               <div class="form-flex" id="interest-rate-main">
                 <input id="interest-rate" type="number" name="interest-rate" step="0.01" requerid>
                 <p class="form-symbol">%</p>
@@ -59,17 +67,24 @@
         <label class="light-text">Mortgage Type</label>
 
         <div class="radio-inputs">
-          <input id="repayment" class="mortgage-type" type="radio" name="mortgage-type" value="repayment" required>
-          <label for="interest-only">interest-only</label>
+          <input id="repayment" class="mortgage-type" type="radio" 
+          name="mortgage-type" value="repayment" required>
+          <label for="repayment">Repayment</label>
         </div>
 
-        <p class="form-alert" id="type_alert">This field is required</p>
+        <div class="radio-inputs">
+          <input id="interest-only" class="mortgage-type" type="radio" 
+          name="mortgage-type" value="interest-only" required>
+          <label for="interest-only">Interest Only</label>
+        </div>
+
+        <p class="form-alert" id="type-alert">This field is required</p>
       </div>
 
       <div class="form-item">
         <button id="calculate-btn" class="calculate-btn" type="button">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path fill="#133041" d="M18.75 ..."/>
+            <path fill="#133041" d="M18.75 2.25H5.25a1.5 1.5 0 0 0-1.5 1.5v16.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V3.75a1.5 1.5 0 0 0-1.5-1.5Zm-10.5 16.5a1.125 1.125 0 1 1 0-2.25 1.125 1.125 0 0 1 0 2.25Zm0-3.75a1.125 1.125 0 1 1 0-2.25 1.125 1.125 0 0 1 0 2.25ZM12 18.75a1.125 1.125 0 1 1 0-2.25 1.125 1.125 0 0 1 0 2.25ZM12 15a1.125 1.125 0 1 1 0-2.25A1.125 1.125 0 0 1 12 15Zm3.75 3.75a1.125 1.125 0 1 1 0-2.25 1.125 1.125 0 0 1 0 2.25Zm0-3.75a1.125 1.125 0 1 1 0-2.25 1.125 1.125 0 0 1 0 2.25Zm1.5-5.25a.75.75 0 0 1-.75.75h-9a.75.75 0 0 1-.75-.75V6a.75.75 0 0 1 .75-.75h9a.75.75 0 0 1 .75.75v3.75Z"/>
           </svg>
           calculate Repayments
         </button>
@@ -100,7 +115,7 @@
       <div class="line"></div>
 
       <div class="total-term">
-        <p class="light-text">Total you'll repay over the ter,</p>
+        <p class="light-text">Total you'll repay over the term</p>
         <span id="term-result" class="term-result"></span>
       </div>
     </div>

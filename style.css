@@ -107,7 +107,7 @@ button {
     margin-bottom: 2rem;
 }
 
-.form_symbol {
+.form-symbol {
     background-color: var(--slate-100);
     color: var(--slate-700);
     padding: .5rem .75rem;

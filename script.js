@@ -41,7 +41,7 @@ document.getElementById('calculate-btn').addEventListener('click', () => {
 
     let isValid = true;
 
-    document.querySelectorAll('.form_flex').forEach(el => {el.classList.remove('error')
+    document.querySelectorAll('.form-flex').forEach(el => {el.classList.remove('error')
     })
 
     if (isNaN(amount) || amount <= 0) {
@@ -178,7 +178,7 @@ document.getElementById('calculate-btn').addEventListener('click', () => {
 
     else {
         document.getElementById('result').innerText = ''
-        document.getElementById('term_result').innerText = ''
+        document.getElementById('term-result').innerText = ''
 
 
         defaultText.classList.remove('hide')
