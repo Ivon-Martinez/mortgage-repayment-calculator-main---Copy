@@ -11,7 +11,7 @@ document.querySelectorAll('.mortgage-type').forEach(input => {
         })
 
         if(this.checked){
-            this.SVGComponentTransferFunctionElement.classList.add('selected')
+            this.parentElement.classList.add('selected')
         }
     })
 })
@@ -34,8 +34,10 @@ document.querySelectorAll('.mortgage-type').forEach(input => {
 
 document.getElementById('calculate-btn').addEventListener('click', () => {
     const amount = parseFloat(document.getElementById('mortgage-amount').value)
-    const term = parseFloat(document.getElementById('mortgage-amount').value)
+    const term = parseFloat(document.getElementById('mortgage-term').value)
     const rate = parseFloat(document.getElementById('interest-rate').value) / 100
+
+
     const mortgageType = document.querySelector('input[name="mortgage-type"]:checked')
 
 
@@ -77,7 +79,7 @@ document.getElementById('calculate-btn').addEventListener('click', () => {
 
     if (!mortgageType) {
         document.getElementById('type-alert').style.display = 'block';
-        document.querySelectorAll('.radio-inputs').forEach(el => {
+        document.querySelectorAll('.radio-inputs').forEach(el => { 
             el.classList.add('error')
         })
         isValid= false;
@@ -117,7 +119,8 @@ document.getElementById('calculate-btn').addEventListener('click', () => {
 
     if (isValid){
 
-        let monthlyRepayment, totalRepayment;
+        let monthlyPayment = 0
+        let totalRepayment = 0
 
         defaultText.classList.add('hide')
         calculationsContainer.classList.add('show')
@@ -140,12 +143,12 @@ document.getElementById('calculate-btn').addEventListener('click', () => {
         }
 
 
-            document.getElementById('result').innerText = $${monthlyPayment.toFixed(2)}
-            document.getElementById('term-result').innerText = $${monthlyPayment.toFixed(2)}
-
+            document.getElementById('result').innerText = `£${monthlyPayment.toFixed(2)}`
+            document.getElementById('term-result').innerText = `£${monthlyPayment.toFixed(2)}`
+    }
         else{
-            document.getElementById('result').innerText=''
-            document.getElementsByName('term-result').innerText= ''
+            document.getElementById('result').innerText = ''
+            document.getElementById('term-result').innerText= ''
 
             defaultText.classList.remove('hide')
             calculationsContainer.classList.remove('show')
@@ -153,7 +156,7 @@ document.getElementById('calculate-btn').addEventListener('click', () => {
         }    
         // document.getElementById('monthlyRepayment').textContent = `Your monthly repayments: £${parseFloat(monthlyRepayment.toFixed(2)).toLocaleString()}`;
         // document.getElementById('totalRepayment').textContent = `Total you'll repay over the term: £${parseFloat(totalRepayment.toFixed(2)).toLocaleString()}`;
-    
+        
     })
 
 
@@ -176,17 +179,7 @@ document.getElementById('calculate-btn').addEventListener('click', () => {
     //     document.getElementById('totalRepayment').textContent = `Total you'll repay over the term: £${parseFloat(totalRepayment.toFixed(2)).toLocaleString()}`;
     //  }
 
-    else {
-        document.getElementById('result').innerText = ''
-        document.getElementById('term-result').innerText = ''
-
-
-        defaultText.classList.remove('hide')
-        calculationsContainer.classList.remove('show')
-    }
-}}
-
-document,getElementById('clear-btn').addEventListener('click', () => {
+document.getElementById('clear-btn').addEventListener('click', () => {
     document.getElementById('mortgage-form').reset()
     document.getElementById('result').innerText = ''
     document.getElementById('term-esult').innerText = ''
@@ -197,14 +190,15 @@ document,getElementById('clear-btn').addEventListener('click', () => {
     defaultText.classList.remove('hide')
     calculationsContainer.classList.remove('show')
 
-    document.querySelectorAll('.radio-inputs').forEach(div => {div.classList.remove('selected')
+    document.querySelectorAll('.radio-inputs').forEach(div => {
+        div.classList.remove('selected')
 
     })
 
-    document.querySelectorAll('.form-flex').forEach(el => { el.classList.remove('error')})
+    document.querySelectorAll('.form-flex').forEach(el => { 
+        el.classList.remove('error')})
 })
 
-})
 
 document.querySelectorAll('.form-alert').forEach(alert => {
     alert.style.display = 'none'
